@@ -19,19 +19,19 @@
         <th>{{item.description}}</th>
         <th>{{item.status}}</th>
         <th>
-          <button type="button" class="btn btn-primary me-2" (click)="ChangeStatus(item.id,'Running')">Start</button>
-          <button type="button" class="btn btn-secondary me-2" (click)="ChangeStatus(item.id,'Closed')">Close</button>
-          <button type="button" class="btn btn-success" (click)="ChangeStatus(item.id,'Cancelled')">Cancel</button>
+          <button type="button" class="btn btn-primary me-2" (click)="ChangeStatus(item,'Running')">Start</button>
+          <button type="button" class="btn btn-secondary me-2" (click)="ChangeStatus(item,'Closed')">Close</button>
+          <button type="button" class="btn btn-success" (click)="ChangeStatus(item,'Cancelled')">Cancel</button>
         </th>
         <th>
-          <button type="button" class="btn btn-danger" (click)="DeleteTask(item.id)">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="DeleteTask(item)">Delete</button>
         </th>
       </tr>
     </tbody>
   </table>
   <div style="width: 50%;" class="text-center">
     <label for="">Create Task</label>
-    <form class="m-2" #TaskForm="ngForm" (ngSubmit)="CreateTask(TaskForm)">
+    <form class="m-2" #TaskForm="ngForm" (ngSubmit)="CreateTask(TaskForm.value)">
       <div class="mb-3">
         <label class="form-label">Title</label>
         <input type="text" class="form-control0" #title="ngModel" [(ngModel)]="createTask.title" name="title" required>

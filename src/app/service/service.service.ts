@@ -21,7 +21,7 @@ export class ServiceService {
       )
   }
   saveTask(data:any): Observable<any[]> {
-    const saveTask = this.httpClient.post<any[]>("http://localhost:3000/SaveTask", data, this.httpOptions)
+    const saveTask = this.httpClient.post<any[]>("http://localhost:3000/SaveTask", data)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -35,8 +35,8 @@ export class ServiceService {
       )
       return(updateTask)
   }
-  deleteTask(data:any): Observable<any> {
-    const deleteTask = this.httpClient.delete<number>(`http://localhost:3000/deleteTask?id=${data}`, this.httpOptions)
+  deleteTask(data:string): Observable<any> {
+    const deleteTask = this.httpClient.delete<string>(`http://localhost:3000/deleteTask/${data}`)
       .pipe(
         catchError(this.errorHandler)
       )

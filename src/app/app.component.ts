@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'TaskManagement';
   taskData: TaskData[] | undefined;
   createTask = new TaskData;
+
   tatus: any[] = [
     { id: '1', Status: 'Running' },
     { id: '2', Status: 'Closed' },
@@ -31,22 +32,22 @@ export class AppComponent implements OnInit {
       this.taskData = data.data
     })
   }
-  ChangeStatus(data: any, Status: string) {
+  ChangeStatus(data: TaskData, Status: string) {
     console.log(data, Status)
-    this.service.updateTask({ "id": data, "status": Status });
+    this.service.updateTask({ "id": data.id, "status": Status });
     this.getTask();
   }
-  DeleteTask(id: number | undefined) {
-    console.log("delete id", id)
-    this.service.deleteTask(id);
+  DeleteTask(data: TaskData) {
+    console.log("delete id", data)
+    this.service.deleteTask(data.id!);
     this.getTask();
   }
-  CreateTask(task: any) {
-    console.log("task form", JSON.stringify(task.value))
-    if (task.valid) {
-      this.TaskForm.resetForm()
+  CreateTask(task: TaskData) {
+    console.log("task form", JSON.stringify(task))
+    if (task) {
+      this.TaskForm.resetForm();
       this.service.saveTask(task).subscribe((data:any) => {
-        console.log("data form save api:", data)
+        console.log("data form save api:", data);
       })
       this.getTask();
     }
