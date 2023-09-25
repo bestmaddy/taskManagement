@@ -1,0 +1,9 @@
+.form-div{
+    width: 50%;
+}
+.form-div label{
+    height: 60px;
+    line-height: 60px;
+    white-space: normal;
+    font-size: 1.5vw;
+}

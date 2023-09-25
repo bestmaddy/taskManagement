@@ -5,17 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderByPipe } from './pipes/orderByPipe';
+import { TaskListComponent } from './task-list/task-list.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrderByPipe,
+    TaskListComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

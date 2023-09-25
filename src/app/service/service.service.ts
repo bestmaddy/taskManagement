@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { TaskData } from '../modules/taskData';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +28,17 @@ export class ServiceService {
       )
       return (saveTask)
   }
+
   updateTask(data:any): Observable<any[]> {
-    console.log(data)
-    const updateTask = this.httpClient.put<any[]>("http://localhost:3000/updateTask", data)
+    const saveTask = this.httpClient.post<any[]>(`http://localhost:3000/updateTask/${data.id}`, data)
       .pipe(
         catchError(this.errorHandler)
       )
-      return(updateTask)
+      return (saveTask)
   }
-  deleteTask(data:string): Observable<any> {
-    const deleteTask = this.httpClient.delete<string>(`http://localhost:3000/deleteTask/${data}`)
+  
+  deleteTask(data:any): Observable<any> {
+    const deleteTask = this.httpClient.post<any>(`http://localhost:3000/deleteTask/${data}`, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

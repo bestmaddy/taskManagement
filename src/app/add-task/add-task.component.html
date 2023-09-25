@@ -1,0 +1,51 @@
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="text-center form-div">
+    <form class="m-2" #TaskForm="ngForm" (ngSubmit)="CreateTask(TaskForm.value)">
+      <label for="">Add Task</label>
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" #title="ngModel" [(ngModel)]="createTask.title" name="title" required>
+        <div *ngIf="!title?.valid && (title?.dirty || title?.touched)">
+          <div *ngIf="title.errors?.['required']">
+            title is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" #description="ngModel" [(ngModel)]="createTask.description"
+          name="description" required>
+        <div *ngIf="!description?.valid && (description?.dirty || description?.touched)">
+          <div *ngIf="description.errors?.['required']">
+            description is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Due Date</label>
+        <input type="date" class="form-control" #duedate="ngModel" [(ngModel)]="createTask.duedate" name="duedate"
+          required>
+        <div *ngIf="!duedate?.valid && (duedate?.dirty || duedate?.touched)">
+          <div *ngIf="duedate.errors?.['required']">
+            duedate is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select class="form-select" name="status" #status="ngModel" [(ngModel)]="createTask.status" required>
+          <option *ngFor="let c of tatus">{{c.Status}}</option>
+        </select>
+        <div *ngIf="!status?.valid && (status?.dirty || status?.touched)">
+          <div *ngIf="status.errors?.['required']">
+            status is required
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary m-2" [disabled]="!TaskForm.valid">Submit</button>
+        <button type="button" class="btn btn-danger " (click)="reset(TaskForm)">Clear</button>
+      </div>
+    </form>
+  </div>
+</div>

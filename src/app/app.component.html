@@ -1,70 +1,21 @@
-<router-outlet></router-outlet>
 <div class="container">
-  <label for="">Task List</label>
-  <table class="table table-striped table-bordered border-primary table-hover m-2">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <tr *ngFor="let item of taskData">
-        <th>{{item.id}}</th>
-        <th>{{item.title}}</th>
-        <th>{{item.description}}</th>
-        <th>{{item.status}}</th>
-        <th>
-          <button type="button" class="btn btn-primary me-2" (click)="ChangeStatus(item,'Running')">Start</button>
-          <button type="button" class="btn btn-secondary me-2" (click)="ChangeStatus(item,'Closed')">Close</button>
-          <button type="button" class="btn btn-success" (click)="ChangeStatus(item,'Cancelled')">Cancel</button>
-        </th>
-        <th>
-          <button type="button" class="btn btn-danger" (click)="DeleteTask(item)">Delete</button>
-        </th>
-      </tr>
-    </tbody>
-  </table>
-  <div style="width: 50%;" class="text-center">
-    <label for="">Create Task</label>
-    <form class="m-2" #TaskForm="ngForm" (ngSubmit)="CreateTask(TaskForm.value)">
-      <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input type="text" class="form-control0" #title="ngModel" [(ngModel)]="createTask.title" name="title" required>
-        <div *ngIf="!title?.valid && (title?.dirty || title?.touched)">
-          <div *ngIf="title.errors?.['required']">
-            title is required
-          </div>
-        </div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="taskList">TMP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="taskList">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="addTask">ADD TASK</a>
+          </li>
+        </ul>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Description</label>
-        <input class="form-control" #description="ngModel" [(ngModel)]="createTask.description" name="description"
-          required>
-        <div *ngIf="!description?.valid && (description?.dirty || description?.touched)">
-          <div *ngIf="description.errors?.['required']">
-            description is required
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Status</label>
-        <select class="form-select" name="status" #status="ngModel" [(ngModel)]="createTask.status" required>
-          <option *ngFor="let c of tatus">{{c.Status}}</option>
-        </select>
-        <div *ngIf="!status?.valid && (status?.dirty || status?.touched)">
-          <div *ngIf="status.errors?.['required']">
-            status is required
-          </div>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!TaskForm.valid">Submit</button>
-      <button type="button" class="btn btn-danger me-2" (click)="reset(TaskForm)">Clear</button>
-
-    </form>
-  </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
